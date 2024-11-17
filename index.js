@@ -1,10 +1,9 @@
-const path = require('path')
-
+const path = require('path');
 
 module.exports = function() {
     return {
       visitor: {
-        Program(programPath, state) {
+        Program(_, state) {
           const filePath = state.file.opts.filename;
           const relativePath = path.relative(process.cwd(), filePath);
           const pathWithoutExtension = relativePath.replace(/\.[^/.]+$/, "");
@@ -13,7 +12,18 @@ module.exports = function() {
           state.file.set('normalizedPath', normalizedPath);
           state.file.set('counter', 0);
         },
+
         JSXOpeningElement(path, state) {
+          const elementName = path.node.name.name || 'unknown';
+          const isFragment = 
+            elementName === 'Fragment' || 
+            elementName === 'React.Fragment' ||
+            path.node.name.type === 'JSXIdentifier' && path.node.name.name === '';  
+
+          if (isFragment) {
+            return;
+          }
+
           const normalizedPath = state.file.get('normalizedPath');
           let counter = state.file.get('counter');
           const attributes = path.node.attributes;
@@ -24,7 +34,6 @@ module.exports = function() {
           );
           
           if (!hasDataLensAttribute) {
-            const elementName = path.node.name.name || 'unknown';
             const uniqueValue = `${normalizedPath}-${elementName}-${counter}`;
             attributes.push(
               {

@@ -1,6 +1,6 @@
 {
     "name": "babel-plugin-jsx-lens",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Babel plugin that automatically adds data-lens attributes to JSX elements",
     "main": "src/index.js",
     "keywords": [
