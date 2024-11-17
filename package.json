@@ -1,0 +1,29 @@
+{
+    "name": "babel-plugin-jsx-lens",
+    "version": "0.0.1",
+    "description": "Babel plugin that automatically adds data-lens attributes to JSX elements",
+    "main": "src/index.js",
+    "keywords": [
+      "babel",
+      "babel-plugin",
+      "jsx",
+      "react"
+    ],
+    "author": "Your Name",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/yourusername/babel-plugin-jsx-lens"
+    },
+    "peerDependencies": {
+      "@babel/core": "^7.0.0"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.24.0",
+      "@babel/preset-react": "^7.23.3",
+      "jest": "^29.7.0"
+    },
+    "scripts": {
+      "test": "jest"
+    }
+  }
